@@ -1,0 +1,48 @@
+{
+  "name": "spec-to-dom",
+  "version": "1.2.1",
+  "description": "Zero-dependency Custom HTML Web Components and Tailwind CSS tokens for high-performance forms and tables.",
+  "publishConfig": {
+    "access": "public"
+  },
+  "main": "./src/index.js",
+  "module": "./src/index.js",
+  "exports": {
+    ".": {
+      "import": "./src/index.js",
+      "require": "./src/index.js",
+      "default": "./src/index.js"
+    }
+  },
+  "files": [
+    "src/index.js",
+    "src/v41"
+  ],
+  "scripts": {
+    "dev": "vite",
+    "test": "node --test \"test/*.test.js\"",
+    "build": "vite build"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/keshavsoft/spec-to-dom.git"
+  },
+  "keywords": [
+    "web-components",
+    "table-cell-content",
+    "tailwind-tokens",
+    "custom-elements"
+  ],
+  "author": "KeshavSoft",
+  "license": "ISC",
+  "type": "module",
+  "bugs": {
+    "url": "https://github.com/keshavsoft/spec-to-dom/issues"
+  },
+  "homepage": "https://keshavsoft.github.io/spec-to-dom/",
+  "devDependencies": {
+    "vite": "^8.2.1",
+    "jsdom": "^29.1.1"
+  },
+  "dependencies": {}
+}
