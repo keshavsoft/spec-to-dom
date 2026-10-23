@@ -15,8 +15,7 @@
     }
   },
   "files": [
-    "src/index.js",
-    "src/v41"
+    "src"
   ],
   "scripts": {
     "dev": "vite",
