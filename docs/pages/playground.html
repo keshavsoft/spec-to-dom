@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Interactive Live Playground | spec-to-dom</title>
+  <meta name="description" content="Test and experiment with spec-to-dom directly in your browser with our interactive live playground.">
+  <link rel="stylesheet" href="../css/style.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+</head>
+<body>
+
+  <!-- Navigation Bar -->
+  <header class="navbar">
+    <a href="../index.html" class="nav-brand">
+      <span>⚡ spec-to-dom</span>
+      <span class="brand-badge">v1.2.1</span>
+    </a>
+    <ul class="nav-links">
+      <li><a href="../index.html">Story</a></li>
+      <li><a href="./why-use.html">Why Use</a></li>
+      <li><a href="./how-to-use.html">How to Use</a></li>
+      <li><a href="./playground.html" class="active">Playground</a></li>
+      <li><a href="./example.html">Examples</a></li>
+    </ul>
+    <div class="nav-actions">
+      <a href="https://www.npmjs.com/package/spec-to-dom" target="_blank" rel="noopener noreferrer" class="btn btn-npm">
+        NPM
+      </a>
+      <a href="https://github.com/keshavsoft/spec-to-dom" target="_blank" rel="noopener noreferrer" class="btn btn-outline">
+        GitHub
+      </a>
+    </div>
+  </header>
+
+  <div class="container">
+    <!-- Header -->
+    <div style="margin-bottom: 2rem;">
+      <div class="hero-pill" style="margin-bottom: 1rem;">
+        <span class="badge-dot"></span> Live Browser Sandbox
+      </div>
+      <h1 style="font-size: 2.4rem; font-weight: 800; color: var(--text-primary); margin-bottom: 0.5rem; letter-spacing: -0.02em;">
+        Interactive Live <span class="gradient-text">Playground</span>
+      </h1>
+      <p style="font-size: 1.1rem; color: var(--text-muted); max-width: 800px;">
+        Experience <span class="inline-code">appendToDom</span> executing in real-time in this document. Trigger actions below to test single-node mounting, real-time event prepending, and collection batch attachments.
+      </p>
+    </div>
+
+    <!-- Playground Card Component -->
+    <section class="demo-section" style="margin-top: 1rem;">
+      <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:1rem; border-bottom: 1px solid var(--border-color); padding-bottom: 1.25rem;">
+        <div>
+          <h2 class="section-title" style="margin-bottom:0.25rem; font-size: 1.45rem;">DOM Mounting Workbench</h2>
+          <p class="section-desc" style="margin-bottom:0; font-size: 0.95rem;">Test different mounting algorithms and check real-time DOM response.</p>
+        </div>
+        <div style="display:flex; gap:0.5rem; align-items:center;">
+          <span class="badge-item" style="background:#f0fdf4; color:#166534; border-color:#bbf7d0;">
+            ● Ready
+          </span>
+          <span class="badge-item" style="background:#eff6ff; color:#1e40af; border-color:#bfdbfe;">
+            Engine v1.2.1
+          </span>
+        </div>
+      </div>
+
+      <div class="demo-grid" style="margin-top: 1.75rem;">
+        <!-- Controls Column -->
+        <div class="demo-controls">
+          <h3 style="font-size:1.05rem; color:var(--text-primary); font-weight: 700;">Trigger DOM Actions</h3>
+          <p style="font-size:0.9rem; color:var(--text-muted);">Click any button below to trigger dynamic DOM mounting via <span class="inline-code">appendToDom()</span>:</p>
+
+          <div class="demo-btn-group">
+            <button id="demo-btn-card" class="btn btn-primary" style="font-size:0.85rem;">
+              Mount Card (Replace Mode)
+            </button>
+            <button id="demo-btn-prepend" class="btn btn-outline" style="font-size:0.85rem; border-color:#93c5fd; color:#1d4ed8;">
+              ⚡ Prepend Live Event
+            </button>
+            <button id="demo-btn-row" class="btn btn-outline" style="font-size:0.85rem;">
+              📦 Append Batch Collection
+            </button>
+            <button id="demo-btn-clear" class="btn btn-outline" style="font-size:0.85rem; color:#dc2626; border-color:#fecaca;">
+              Clear Container
+            </button>
+          </div>
+
+          <!-- Code Box -->
+          <div class="code-box" style="margin-top: 1rem;">
+            <div class="code-header">
+              <span>Execution Snippet</span>
+              <button class="copy-btn">Copy</button>
+            </div>
+            <pre><code>import { appendToDom } from "spec-to-dom";
+
+// 1. Mount single node (replaces container contents)
+appendToDom({
+  buildSpec: cardElement,
+  targetHtmlId: "live-demo-target"
+});
+
+// 2. Prepend live stream event
+appendToDom({
+  buildSpec: alertElement,
+  targetHtmlId: "live-demo-target",
+  appendPosition: "prepend"
+});
+
+// 3. Append collection array
+appendToDom({
+  buildSpec: [item1, item2],
+  targetHtmlId: "live-demo-target",
+  appendPosition: "append"
+});</code></pre>
+          </div>
+        </div>
+
+        <!-- Live Target Container Preview -->
+        <div class="demo-preview-card">
+          <div class="demo-preview-header">
+            <span>Target Container: <span class="inline-code">#live-demo-target</span></span>
+            <span style="font-size:0.75rem; color:var(--success); font-weight:700;">● LIVE DOM</span>
+          </div>
+          <div id="live-demo-target" class="demo-container-target">
+            <div style="color:#64748b; font-size:0.9rem; text-align:center; padding:2.5rem 1rem;">
+              👋 The target container is ready. Click the buttons on the left to mount live nodes dynamically!
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Navigation Cards to other chapters -->
+    <div style="margin-top: 3.5rem;">
+      <h3 style="font-size: 1.25rem; font-weight: 700; color: var(--text-primary); margin-bottom: 1rem;">
+        Explore More Documentation
+      </h3>
+      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 1.25rem;">
+        <a href="./why-use.html" class="feature-card" style="text-decoration: none; color: inherit;">
+          <h4 style="font-size: 1.05rem; font-weight: 700; color: var(--primary); margin-bottom: 0.35rem;">Why Use spec-to-dom &rarr;</h4>
+          <p style="font-size: 0.9rem; color: var(--text-muted); margin: 0;">Understand why developers choose spec-to-dom over heavy VDOM runtimes.</p>
+        </a>
+        <a href="./how-to-use.html" class="feature-card" style="text-decoration: none; color: inherit;">
+          <h4 style="font-size: 1.05rem; font-weight: 700; color: var(--primary); margin-bottom: 0.35rem;">How to Use &rarr;</h4>
+          <p style="font-size: 0.9rem; color: var(--text-muted); margin: 0;">Complete installation instructions, API reference, and parameter details.</p>
+        </a>
+        <a href="./example.html" class="feature-card" style="text-decoration: none; color: inherit;">
+          <h4 style="font-size: 1.05rem; font-weight: 700; color: var(--primary); margin-bottom: 0.35rem;">Interactive Examples &rarr;</h4>
+          <p style="font-size: 0.9rem; color: var(--text-muted); margin: 0;">Check out functional tables, live feeds, and form builders.</p>
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer>
+    <div class="footer-inner">
+      <div>
+        <strong>spec-to-dom</strong> &bull; Released under ISC License &bull; &copy; 2026 <a href="https://github.com/keshavsoft" target="_blank" style="color:inherit; text-decoration:underline;">KeshavSoft</a>.
+      </div>
+      <div class="footer-links">
+        <a href="../index.html">Home</a>
+        <a href="./why-use.html">Why Use</a>
+        <a href="./how-to-use.html">How to Use</a>
+        <a href="./playground.html">Playground</a>
+        <a href="./example.html">Examples</a>
+        <a href="https://www.npmjs.com/package/spec-to-dom" target="_blank" rel="noopener noreferrer">NPM</a>
+        <a href="https://github.com/keshavsoft/spec-to-dom" target="_blank" rel="noopener noreferrer">GitHub</a>
+      </div>
+    </div>
+  </footer>
+
+  <script src="../js/app.js"></script>
+</body>
+</html>

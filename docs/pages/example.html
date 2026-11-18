@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Interactive Examples | spec-to-dom Documentation</title>
+  <meta name="description" content="Explore real-world examples and interactive playgrounds using spec-to-dom.">
+  <link rel="stylesheet" href="../css/style.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+</head>
+<body>
+
+  <!-- Navigation Bar -->
+  <header class="navbar">
+    <a href="../index.html" class="nav-brand">
+      <span>⚡ spec-to-dom</span>
+      <span class="brand-badge">v1.2.1</span>
+    </a>
+    <ul class="nav-links">
+      <li><a href="../index.html">Story</a></li>
+      <li><a href="./why-use.html">Why Use</a></li>
+      <li><a href="./how-to-use.html">How to Use</a></li>
+      <li><a href="./playground.html">Playground</a></li>
+      <li><a href="./example.html" class="active">Examples</a></li>
+    </ul>
+    <div class="nav-actions">
+      <a href="https://www.npmjs.com/package/spec-to-dom" target="_blank" rel="noopener noreferrer" class="btn btn-npm">
+        NPM
+      </a>
+      <a href="https://github.com/keshavsoft/spec-to-dom" target="_blank" rel="noopener noreferrer" class="btn btn-outline">
+        GitHub
+      </a>
+    </div>
+  </header>
+
+  <main class="container" style="max-width: 960px;">
+    <!-- Main Content -->
+    <article class="doc-article" style="max-width: 100%;">
+      <h1>Practical <span class="gradient-text">Examples</span></h1>
+      <p style="font-size:1.15rem; color:var(--text-secondary); margin-bottom:2rem;">
+        Explore functional use-cases showing how <span class="inline-code">spec-to-dom</span> handles collections, prepending items, and building responsive browser user interfaces.
+      </p>
+
+      <!-- Example 1: Table Rows -->
+      <section id="ex-table">
+        <h2>Example 1: Dynamic Data Table Rows</h2>
+        <p>Mounting multiple table rows simultaneously without re-rendering the whole table header or triggering expensive re-layouts:</p>
+
+        <div class="code-box">
+          <div class="code-header">
+            <span>dynamic-table.js</span>
+            <button class="copy-btn">Copy</button>
+          </div>
+          <pre><code>import appendToDom from "spec-to-dom";
+
+// 1. Data array from API
+const users = [
+  { id: 101, name: "Alice Morgan", role: "Lead Architect", status: "Active" },
+  { id: 102, name: "Bob Vance", role: "DevOps Engineer", status: "Pending" },
+  { id: 103, name: "Carol Danvers", role: "Security Specialist", status: "Active" }
+];
+
+// 2. Generate array of HTMLTableRowElements
+const rowElements = users.map(user => {
+  const tr = document.createElement("tr");
+  tr.innerHTML = `
+    &lt;td&gt;#${user.id}&lt;/td&gt;
+    &lt;td&gt;&lt;strong&gt;${user.name}&lt;/strong&gt;&lt;/td&gt;
+    &lt;td&gt;${user.role}&lt;/td&gt;
+    &lt;td&gt;&lt;span class="badge"&gt;${user.status}&lt;/span&gt;&lt;/td&gt;
+  `;
+  return tr;
+});
+
+// 3. Batch mount directly into tbody using spec-to-dom
+appendToDom({
+  buildSpec: rowElements,
+  targetHtmlId: "users-table-body",
+  appendPosition: "append"
+});</code></pre>
+        </div>
+
+        <!-- Interactive Sandbox for Example 1 -->
+        <div class="demo-section" style="padding:1.5rem; margin:1.5rem 0;">
+          <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:1rem;">
+            <strong>Live Table Demo:</strong>
+            <button id="ex1-run-btn" class="btn btn-primary" style="font-size:0.8rem; padding:0.35rem 0.8rem;">
+              + Append 3 Users Batch
+            </button>
+          </div>
+
+          <div class="table-wrapper" style="margin:0;">
+            <table>
+              <thead>
+                <tr>
+                  <th>ID</th>
+                  <th>Name</th>
+                  <th>Role</th>
+                  <th>Status</th>
+                </tr>
+              </thead>
+              <tbody id="users-table-body">
+                <tr>
+                  <td>#100</td>
+                  <td><strong>Admin User</strong></td>
+                  <td>System Administrator</td>
+                  <td><span class="inline-code">System</span></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </section>
+
+      <!-- Example 2: Live Feed Prepend -->
+      <section id="ex-prepend" style="margin-top:3rem;">
+        <h2>Example 2: Prepending Real-Time Live Feed</h2>
+        <p>In messaging apps, audit logs, and notification feeds, new items should appear at the top. Set <span class="inline-code">appendPosition: "prepend"</span> to place new nodes first instantly:</p>
+
+        <div class="code-box">
+          <div class="code-header">
+            <span>prepend-feed.js</span>
+            <button class="copy-btn">Copy</button>
+          </div>
+          <pre><code>import appendToDom from "spec-to-dom";
+
+function onNewNotification(notification) {
+  const item = document.createElement("div");
+  item.className = "demo-item notification";
+  item.innerHTML = `
+    &lt;span&gt;🔔 &lt;strong&gt;${notification.title}:&lt;/strong&gt; ${notification.message}&lt;/span&gt;
+    &lt;small style="color:var(--text-muted);"&gt;Just now&lt;/small&gt;
+  `;
+
+  // Prepend to top of notification container
+  appendToDom({
+    buildSpec: item,
+    targetHtmlId: "feed-container",
+    appendPosition: "prepend"
+  });
+}</code></pre>
+        </div>
+
+        <!-- Interactive Sandbox for Example 2 -->
+        <div class="demo-section" style="padding:1.5rem; margin:1.5rem 0;">
+          <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:1rem;">
+            <strong>Live Feed Sandbox:</strong>
+            <button id="ex2-run-btn" class="btn btn-outline" style="font-size:0.8rem; padding:0.35rem 0.8rem; color:var(--primary); border-color:#93c5fd;">
+              ⚡ Prepend Incoming Notification
+            </button>
+          </div>
+
+          <div id="feed-container" style="background:#ffffff; border:1px solid var(--border-color); border-radius:8px; padding:1rem; min-height:120px;">
+            <div class="demo-item">
+              <span>🚀 <strong>System:</strong> Server started successfully at 16:55:00</span>
+              <small style="color:var(--text-muted);">Initial</small>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Example 3: Form Card Builder -->
+      <section id="ex-form" style="margin-top:3rem;">
+        <h2>Example 3: Dynamic Form Card Builder</h2>
+        <p>Construct complex UI widgets and mount them cleanly with automatic container replacement:</p>
+
+        <div class="code-box">
+          <div class="code-header">
+            <span>form-builder.js</span>
+            <button class="copy-btn">Copy</button>
+          </div>
+          <pre><code>import appendToDom from "spec-to-dom";
+
+const formCard = document.createElement("div");
+formCard.className = "p-4 border rounded shadow-sm bg-white";
+formCard.innerHTML = `
+  &lt;h3 style="margin-bottom:0.75rem;"&gt;Project Settings&lt;/h3&gt;
+  &lt;div style="margin-bottom:1rem;"&gt;
+    &lt;label style="display:block; font-size:0.85rem; font-weight:600; margin-bottom:0.25rem;"&gt;Project Name&lt;/label&gt;
+    &lt;input type="text" value="spec-to-dom v1.2.1" style="width:100%; padding:0.5rem; border:1px solid #cbd5e1; border-radius:4px;" /&gt;
+  &lt;/div&gt;
+  &lt;button type="button" class="btn btn-primary"&gt;Save Configuration&lt;/button&gt;
+`;
+
+appendToDom({
+  buildSpec: formCard,
+  targetHtmlId: "form-slot",
+  showLog: true
+});</code></pre>
+        </div>
+      </section>
+
+      <!-- Example 4: Web Components Integration -->
+      <section id="ex-web-components" style="margin-top:3rem;">
+        <h2>Example 4: Synergy with Custom Elements &amp; Web Components</h2>
+        <p><span class="inline-code">spec-to-dom</span> pairs seamlessly with custom element lifecycle callbacks:</p>
+
+        <div class="code-box">
+          <div class="code-header">
+            <span>custom-widget.js</span>
+            <button class="copy-btn">Copy</button>
+          </div>
+          <pre><code>import appendToDom from "spec-to-dom";
+
+class MetricsWidget extends HTMLElement {
+  connectedCallback() {
+    this.innerHTML = `&lt;div id="metric-content"&gt;&lt;/div&gt;`;
+    
+    const metricBadge = document.createElement("span");
+    metricBadge.className = "badge-item";
+    metricBadge.textContent = "Telemetry Online";
+
+    appendToDom({
+      buildSpec: metricBadge,
+      targetHtmlId: "metric-content"
+    });
+  }
+}
+
+customElements.define("metrics-widget", MetricsWidget);</code></pre>
+        </div>
+
+        <div class="callout callout-info" style="margin-top:2rem;">
+          <h4>Explore Further</h4>
+          <p>Read about the architecture and advantages in the <a href="./why-use.html" style="color:inherit; font-weight:700; text-decoration:underline;">Why Use Guide</a>.</p>
+        </div>
+      </section>
+    </article>
+  </main>
+
+  <!-- Footer -->
+  <footer>
+    <div class="footer-inner">
+      <div>
+        <strong>spec-to-dom</strong> &bull; Released under ISC License &bull; &copy; 2026 <a href="https://github.com/keshavsoft" target="_blank" style="color:inherit; text-decoration:underline;">KeshavSoft</a>.
+      </div>
+      <div class="footer-links">
+        <a href="../index.html">Story</a>
+        <a href="./why-use.html">Why Use</a>
+        <a href="./how-to-use.html">How to Use</a>
+        <a href="./playground.html">Playground</a>
+        <a href="./example.html">Examples</a>
+        <a href="https://www.npmjs.com/package/spec-to-dom" target="_blank" rel="noopener noreferrer">NPM</a>
+        <a href="https://github.com/keshavsoft/spec-to-dom" target="_blank" rel="noopener noreferrer">GitHub</a>
+      </div>
+    </div>
+  </footer>
+
+  <script src="../js/app.js"></script>
+  <script>
+    // Specific handlers for example page interactive sandboxes
+    document.addEventListener("DOMContentLoaded", () => {
+      let userCount = 104;
+      let notifCount = 1;
+
+      const ex1Btn = document.getElementById("ex1-run-btn");
+      if (ex1Btn) {
+        ex1Btn.addEventListener("click", () => {
+          const names = ["David Miller", "Elena Rostova", "Franklin Pierce", "Grace Hopper", "Hank Pym"];
+          const roles = ["Frontend Engineer", "Data Scientist", "Product Manager", "Systems Architect", "QA Analyst"];
+          
+          const rows = [];
+          for (let i = 0; i < 3; i++) {
+            const tr = document.createElement("tr");
+            const name = names[Math.floor(Math.random() * names.length)];
+            const role = roles[Math.floor(Math.random() * roles.length)];
+            tr.innerHTML = `
+              <td>#${userCount++}</td>
+              <td><strong>${name}</strong></td>
+              <td>${role}</td>
+              <td><span style="color:#16a34a; font-weight:600;">Active</span></td>
+            `;
+            rows.push(tr);
+          }
+
+          appendToDom({
+            buildSpec: rows,
+            targetHtmlId: "users-table-body",
+            appendPosition: "append"
+          });
+        });
+      }
+
+      const ex2Btn = document.getElementById("ex2-run-btn");
+      if (ex2Btn) {
+        ex2Btn.addEventListener("click", () => {
+          notifCount++;
+          const alert = document.createElement("div");
+          alert.className = "demo-item notification";
+          alert.innerHTML = `
+            <span>🔔 <strong>Update #${notifCount}:</strong> New client connected successfully.</span>
+            <small style="color:var(--text-muted);">${new Date().toLocaleTimeString()}</small>
+          `;
+
+          appendToDom({
+            buildSpec: alert,
+            targetHtmlId: "feed-container",
+            appendPosition: "prepend"
+          });
+        });
+      }
+    });
+  </script>
+</body>
+</html>

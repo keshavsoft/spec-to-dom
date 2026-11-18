@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>How to Use spec-to-dom | Step-by-Step API & Installation Guide</title>
+  <meta name="description" content="Complete documentation and API reference for installing and using spec-to-dom in modern web projects.">
+  <link rel="stylesheet" href="../css/style.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+</head>
+<body>
+
+  <!-- Navigation Bar -->
+  <header class="navbar">
+    <a href="../index.html" class="nav-brand">
+      <span>⚡ spec-to-dom</span>
+      <span class="brand-badge">v1.2.1</span>
+    </a>
+    <ul class="nav-links">
+      <li><a href="../index.html">Story</a></li>
+      <li><a href="./why-use.html">Why Use</a></li>
+      <li><a href="./how-to-use.html" class="active">How to Use</a></li>
+      <li><a href="./playground.html">Playground</a></li>
+      <li><a href="./example.html">Examples</a></li>
+    </ul>
+    <div class="nav-actions">
+      <a href="https://www.npmjs.com/package/spec-to-dom" target="_blank" rel="noopener noreferrer" class="btn btn-npm">
+        NPM
+      </a>
+      <a href="https://github.com/keshavsoft/spec-to-dom" target="_blank" rel="noopener noreferrer" class="btn btn-outline">
+        GitHub
+      </a>
+    </div>
+  </header>
+
+  <main class="container" style="max-width: 960px;">
+    <!-- Main Content -->
+    <article class="doc-article" style="max-width: 100%;">
+      <h1>How to Use <span class="gradient-text">spec-to-dom</span></h1>
+      <p style="font-size:1.15rem; color:var(--text-secondary); margin-bottom:2rem;">
+        Get up and running with <span class="inline-code">spec-to-dom</span> in under two minutes. Learn how to install, import, and configure DOM mount operations across all application environments.
+      </p>
+
+      <!-- Section: Installation -->
+      <section id="installation">
+        <h2>1. Installation</h2>
+        <p>Choose your preferred installation or loading method:</p>
+
+        <h3>Option A: NPM Package (Recommended for Bundlers)</h3>
+        <div class="code-box">
+          <div class="code-header">
+            <span>Terminal</span>
+            <button class="copy-btn">Copy</button>
+          </div>
+          <pre><code>npm install spec-to-dom</code></pre>
+        </div>
+
+        <h3>Option B: PNPM or Yarn</h3>
+        <div class="code-box">
+          <div class="code-header">
+            <span>Terminal</span>
+            <button class="copy-btn">Copy</button>
+          </div>
+          <pre><code>pnpm add spec-to-dom
+# or
+yarn add spec-to-dom</code></pre>
+        </div>
+
+        <h3>Option C: Direct CDN / ES Module</h3>
+        <p>In vanilla HTML or standalone prototypes, import directly without a build step:</p>
+        <div class="code-box">
+          <div class="code-header">
+            <span>HTML Script Tag</span>
+            <button class="copy-btn">Copy</button>
+          </div>
+          <pre><code>&lt;script type="module"&gt;
+  import appendToDom from "https://cdn.jsdelivr.net/npm/spec-to-dom@1.2.1/src/index.js";
+  
+  const heading = document.createElement("h1");
+  heading.textContent = "Mounted via CDN!";
+  
+  appendToDom({
+    buildSpec: heading,
+    targetHtmlId: "app"
+  });
+&lt;/script&gt;</code></pre>
+        </div>
+      </section>
+
+      <!-- Section: API Reference -->
+      <section id="api-reference">
+        <h2>2. API Reference: <span class="inline-code">appendToDom()</span></h2>
+        
+        <p>The primary export of the library is <span class="inline-code">appendToDom</span>. It accepts a single structured configuration object:</p>
+
+        <div class="code-box">
+          <div class="code-header">
+            <span>JavaScript Signature</span>
+            <button class="copy-btn">Copy</button>
+          </div>
+          <pre><code>import appendToDom from "spec-to-dom";
+
+const mountedContainer = appendToDom({
+  buildSpec,        // HTMLElement | Array<HTMLElement> | NodeList | HTMLCollection
+  targetHtmlId,     // string (HTML ID of the container element)
+  appendPosition,   // "append" | "prepend" (optional, default: "append")
+  showLog           // boolean (optional, default: false)
+});</code></pre>
+        </div>
+      </section>
+
+      <!-- Section: Parameters Breakdown -->
+      <section id="parameters">
+        <h2>3. Parameters Breakdown</h2>
+
+        <div class="table-wrapper">
+          <table>
+            <thead>
+              <tr>
+                <th>Property</th>
+                <th>Type</th>
+                <th>Default</th>
+                <th>Description</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><span class="inline-code">buildSpec</span></td>
+                <td><span class="inline-code">Node | Node[] | Collection</span></td>
+                <td><em>Required</em></td>
+                <td>The DOM node, array of nodes, or collection to attach into the target container.</td>
+              </tr>
+              <tr>
+                <td><span class="inline-code">targetHtmlId</span></td>
+                <td><span class="inline-code">string</span></td>
+                <td><em>Required</em></td>
+                <td>The HTML <span class="inline-code">id</span> string of the destination container in your document.</td>
+              </tr>
+              <tr>
+                <td><span class="inline-code">appendPosition</span></td>
+                <td><span class="inline-code">"append" | "prepend"</span></td>
+                <td><span class="inline-code">"append"</span></td>
+                <td>When set to <span class="inline-code">"prepend"</span>, inserts items before existing children. For single elements with <span class="inline-code">"append"</span>, replaces container content.</td>
+              </tr>
+              <tr>
+                <td><span class="inline-code">showLog</span></td>
+                <td><span class="inline-code">boolean</span></td>
+                <td><span class="inline-code">false</span></td>
+                <td>When <span class="inline-code">true</span>, logs debug output to the browser console during execution.</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <h3>Return Value</h3>
+        <p>Returns the resolved <span class="inline-code">HTMLElement</span> container if mounting succeeds, or <span class="inline-code">null</span> if no matching element with <span class="inline-code">targetHtmlId</span> was found in the DOM.</p>
+      </section>
+
+      <!-- Section: Step-by-Step Guide -->
+      <section id="examples-walkthrough">
+        <h2>4. Step-by-Step Usage Guide</h2>
+
+        <h3>Step 1: Define Target HTML Container</h3>
+        <div class="code-box">
+          <div class="code-header">
+            <span>index.html</span>
+            <button class="copy-btn">Copy</button>
+          </div>
+          <pre><code>&lt;!-- Destination container --&gt;
+&lt;div id="notification-feed" class="p-4 border rounded"&gt;&lt;/div&gt;</code></pre>
+        </div>
+
+        <h3>Step 2: Mount Elements Dynamically</h3>
+        <div class="code-box">
+          <div class="code-header">
+            <span>main.js</span>
+            <button class="copy-btn">Copy</button>
+          </div>
+          <pre><code>import appendToDom from "spec-to-dom";
+
+// Construct an element
+const alertBox = document.createElement("div");
+alertBox.className = "alert alert-success";
+alertBox.textContent = "Data synced successfully!";
+
+// Mount to the container
+appendToDom({
+  buildSpec: alertBox,
+  targetHtmlId: "notification-feed",
+  appendPosition: "prepend",
+  showLog: true
+});</code></pre>
+        </div>
+      </section>
+
+      <!-- Section: Global Registration -->
+      <section id="global-registration">
+        <h2>5. Global Registration: <span class="inline-code">window.ks.specToDom</span></h2>
+        <p>When imported or loaded in the browser, <span class="inline-code">spec-to-dom</span> automatically registers itself under the global KeshavSoft namespace:</p>
+
+        <div class="code-box">
+          <div class="code-header">
+            <span>Browser Global Access</span>
+            <button class="copy-btn">Copy</button>
+          </div>
+          <pre><code>// Inspect registered global metadata
+console.log(window.ks.specToDom.meta);
+// Output: { version: "1.2.1", name: "spec-to-dom" }
+
+// Call directly from any script or console
+window.ks.specToDom.appendToDom({
+  buildSpec: myElement,
+  targetHtmlId: "app"
+});</code></pre>
+        </div>
+
+        <div class="callout callout-info">
+          <h4>💡 Next Steps: See it in Action</h4>
+          <p>Explore real-world scenarios including tables, dynamic cards, and form generators in the <a href="./example.html" style="color:inherit; font-weight:700; text-decoration:underline;">Interactive Examples Chapter</a>.</p>
+        </div>
+      </section>
+    </article>
+  </main>
+
+  <!-- Footer -->
+  <footer>
+    <div class="footer-inner">
+      <div>
+        <strong>spec-to-dom</strong> &bull; Released under ISC License &bull; &copy; 2026 <a href="https://github.com/keshavsoft" target="_blank" style="color:inherit; text-decoration:underline;">KeshavSoft</a>.
+      </div>
+      <div class="footer-links">
+        <a href="../index.html">Story</a>
+        <a href="./why-use.html">Why Use</a>
+        <a href="./how-to-use.html">How to Use</a>
+        <a href="./playground.html">Playground</a>
+        <a href="./example.html">Examples</a>
+        <a href="https://www.npmjs.com/package/spec-to-dom" target="_blank" rel="noopener noreferrer">NPM</a>
+        <a href="https://github.com/keshavsoft/spec-to-dom" target="_blank" rel="noopener noreferrer">GitHub</a>
+      </div>
+    </div>
+  </footer>
+
+  <script src="../js/app.js"></script>
+</body>
+</html>

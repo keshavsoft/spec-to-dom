@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>spec-to-dom | The Story & Overview</title>
+  <meta name="description" content="The story, philosophy, and architecture of spec-to-dom: a zero-dependency, ultra-lightweight declarative DOM mounting engine.">
+  <link rel="stylesheet" href="./css/style.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+</head>
+<body>
+
+  <!-- Navigation Bar -->
+  <header class="navbar">
+    <a href="./index.html" class="nav-brand">
+      <span>⚡ spec-to-dom</span>
+      <span class="brand-badge">v1.2.1</span>
+    </a>
+    <ul class="nav-links">
+      <li><a href="./index.html" class="active">Story</a></li>
+      <li><a href="./pages/why-use.html">Why Use</a></li>
+      <li><a href="./pages/how-to-use.html">How to Use</a></li>
+      <li><a href="./pages/playground.html">Playground</a></li>
+      <li><a href="./pages/example.html">Examples</a></li>
+    </ul>
+    <div class="nav-actions">
+      <a href="https://www.npmjs.com/package/spec-to-dom" target="_blank" rel="noopener noreferrer" class="btn btn-npm">
+        <svg width="16" height="16" viewBox="0 0 780 250" fill="currentColor">
+          <path d="M240,250h100v-50h100V0H240V250z M340,50h50v100h-50V50z M480,0v200h100V50h50v150h50V50h50v150h50V0H480z M0,200h100V50h50v150h50V0H0V200z"></path>
+        </svg>
+        NPM
+      </a>
+      <a href="https://github.com/keshavsoft/spec-to-dom" target="_blank" rel="noopener noreferrer" class="btn btn-outline">
+        <svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor">
+          <path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"></path>
+        </svg>
+        GitHub
+      </a>
+    </div>
+  </header>
+
+  <!-- Main Content -->
+  <main class="container" style="max-width: 960px;">
+    
+    <!-- Hero Section -->
+    <section class="hero" style="padding-top: 2.5rem; padding-bottom: 2.5rem;">
+      <div class="hero-pill">
+        <span class="badge-dot"></span>
+        Zero Dependencies &bull; Sub-1KB &bull; Pure Native DOM
+      </div>
+      <h1>The Story of <span class="gradient-text">spec-to-dom</span></h1>
+      <p class="hero-subtitle">
+        Bridging the gap between declarative element specifications and raw browser performance with an ultra-lightweight, zero-overhead DOM mounting utility.
+      </p>
+
+      <div class="hero-badges">
+        <div class="badge-item">
+          <strong>npm:</strong> spec-to-dom v1.2.1
+        </div>
+        <div class="badge-item">
+          <strong>Size:</strong> &lt; 1KB Gzipped
+        </div>
+        <div class="badge-item">
+          <strong>Dependencies:</strong> 0 (Zero)
+        </div>
+        <div class="badge-item">
+          <strong>License:</strong> ISC
+        </div>
+      </div>
+
+      <div class="hero-cta">
+        <a href="./pages/playground.html" class="btn btn-primary">Try Live Playground</a>
+        <a href="./pages/how-to-use.html" class="btn btn-outline">How to Use</a>
+        <a href="https://www.npmjs.com/package/spec-to-dom" target="_blank" rel="noopener noreferrer" class="btn btn-outline">View on NPM</a>
+      </div>
+    </section>
+
+    <!-- Narrative Story Section -->
+    <article style="font-size: 1.05rem; line-height: 1.8; color: var(--text-secondary); margin-bottom: 4rem;">
+      
+      <div style="margin-bottom: 2.5rem;">
+        <h2 style="font-size: 1.85rem; font-weight: 800; color: var(--text-primary); margin-bottom: 1rem; letter-spacing: -0.015em;">
+          The Prologue: A Tale of Two Extremes
+        </h2>
+        <p>
+          Over the past decade, frontend web development split into two divergent paths. On one side stood heavyweight JavaScript frameworks that introduced virtual DOMs, synthetic events, and complex build pipelines. While convenient, they often carry hundreds of kilobytes of runtime dependencies simply to render a few cards or update rows in a data table.
+        </p>
+        <p style="margin-top: 1rem;">
+          On the other side was vanilla JavaScript and raw <span class="inline-code">innerHTML</span> manipulations. While lightweight, manipulating strings directly opened the door to dangerous Cross-Site Scripting (XSS) vulnerabilities, destroyed existing event listeners, and caused input elements to lose focus upon every DOM refresh.
+        </p>
+      </div>
+
+      <div style="margin-bottom: 2.5rem; background: var(--bg-secondary); border-left: 4px solid var(--primary); padding: 1.5rem 1.75rem; border-radius: 0 var(--radius-md) var(--radius-md) 0;">
+        <h3 style="font-size: 1.25rem; font-weight: 700; color: var(--text-primary); margin-bottom: 0.5rem;">
+          The Vision: Declarative Simplicity with Native Speed
+        </h3>
+        <p style="margin: 0;">
+          <strong>spec-to-dom</strong> was born out of a clear realization: modern browsers are already extraordinary rendering engines. Their native <span class="inline-code">.append()</span> and <span class="inline-code">.prepend()</span> APIs are written in C++ and optimized by browser engineers for maximum hardware-accelerated throughput. What developers actually needed was not another virtual DOM, but a reliable, predictable bridge that mounts element specifications and collections directly to containers with zero baggage.
+        </p>
+      </div>
+
+    </article>
+
+  </main>
+
+  <!-- Footer -->
+  <footer>
+    <div class="footer-inner">
+      <div>
+        <strong>spec-to-dom</strong> &bull; Released under ISC License &bull; &copy; 2026 <a href="https://github.com/keshavsoft" target="_blank" style="color:inherit; text-decoration:underline;">KeshavSoft</a>.
+      </div>
+      <div class="footer-links">
+        <a href="./index.html">Story</a>
+        <a href="./pages/why-use.html">Why Use</a>
+        <a href="./pages/how-to-use.html">How to Use</a>
+        <a href="./pages/playground.html">Playground</a>
+        <a href="./pages/example.html">Examples</a>
+        <a href="https://www.npmjs.com/package/spec-to-dom" target="_blank" rel="noopener noreferrer">NPM</a>
+        <a href="https://github.com/keshavsoft/spec-to-dom" target="_blank" rel="noopener noreferrer">GitHub</a>
+      </div>
+    </div>
+  </footer>
+
+</body>
+</html>
