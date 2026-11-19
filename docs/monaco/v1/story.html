@@ -1,0 +1,160 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>The Story of V3 — Minimalist Spec Studio</title>
+  <link rel="stylesheet" href="../../story.css">
+  <style>
+    .studio-preview-box {
+      background: #08111f;
+      border: 1px solid #263750;
+      border-radius: 14px;
+      padding: 24px;
+      margin: 28px 0;
+      color: #e5edf8;
+    }
+    .preview-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-bottom: 1px solid #263750;
+      padding-bottom: 12px;
+      margin-bottom: 16px;
+      font-size: 13px;
+      font-family: monospace;
+      color: #38bdf8;
+    }
+    .mini-grid {
+      display: grid;
+      grid-template-columns: 200px 1fr;
+      gap: 16px;
+      background: #111e31;
+      border-radius: 8px;
+      padding: 16px;
+      border: 1px solid #1f2d42;
+    }
+    .mock-select {
+      background: #0d1726;
+      border: 1px solid #2a3d58;
+      border-radius: 6px;
+      padding: 6px 10px;
+      font-size: 11px;
+      color: #8fa5c4;
+      margin-bottom: 10px;
+    }
+    .mock-editor {
+      background: #070d18;
+      border-radius: 6px;
+      padding: 12px;
+      font-family: monospace;
+      font-size: 11px;
+      line-height: 1.6;
+    }
+    .feature-list {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+      margin-top: 16px;
+    }
+    .feature-item {
+      background: #0d1726;
+      border: 1px solid #1f2d42;
+      border-radius: 8px;
+      padding: 16px;
+    }
+    .feature-item h3 {
+      font-size: 14px;
+      margin-top: 0;
+      color: #38bdf8;
+    }
+    .feature-item p {
+      font-size: 12px;
+      color: #94a3b8;
+      margin: 0;
+    }
+    .btn-row {
+      display: flex;
+      gap: 12px;
+      margin: 20px 0;
+    }
+    .btn {
+      padding: 10px 18px;
+      border-radius: 8px;
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 13px;
+    }
+    .btn.primary {
+      background: #0284c7;
+      color: #fff;
+    }
+    .btn.secondary {
+      background: #1e293b;
+      color: #cbd5e1;
+      border: 1px solid #334155;
+    }
+  </style>
+</head>
+<body>
+  <main style="max-width: 900px; margin: 40px auto; padding: 0 20px; font-family: sans-serif; color: #e2e8f0;">
+    <section>
+      <span style="font-size: 12px; text-transform: uppercase; letter-spacing: 0.1em; color: #38bdf8; font-weight: 700;">Version 3 Studio</span>
+      <h1 style="font-size: 28px; margin: 8px 0 16px 0;">declarative-spec Minimalist Monaco Studio</h1>
+      <p style="color: #94a3b8; line-height: 1.6;">
+        A high-density, distraction-free explorer for <code>spec.json</code> DOM blueprints. Adapted from the clean modular layout of Definitions Explorer V5.
+      </p>
+
+      <div class="btn-row">
+        <a class="btn primary" href="./index.html">Launch V3 Studio →</a>
+        <a class="btn secondary" href="../v2/index.html">Compare with V2 Studio</a>
+      </div>
+    </section>
+
+    <!-- Visual Architecture Representation -->
+    <div class="studio-preview-box">
+      <div class="preview-header">
+        <span>V3 Studio Layout</span>
+        <span>Minimalist 2-Column Split</span>
+      </div>
+      <div class="mini-grid">
+        <div>
+          <div style="font-size: 11px; text-transform: uppercase; color: #8fa5c4; font-weight: 700; margin-bottom: 8px;">Spec Selector</div>
+          <div class="mock-select">01 · Spec Element (e.g. tableSimple)</div>
+          <div class="mock-select" style="text-align: center; color: #38bdf8; font-weight: 600;">Show all</div>
+        </div>
+        <div class="mock-editor">
+          <div><span style="color:#60a5fa">"tableSimple"</span>: {</div>
+          <div style="padding-left:14px"><span style="color:#fcd34d">"tagName"</span>: <span style="color:#a7f3d0">"table"</span>,</div>
+          <div style="padding-left:14px"><span style="color:#fcd34d">"attributes"</span>: { <span style="color:#a7f3d0">"class"</span>: <span style="color:#a7f3d0">"table"</span> },</div>
+          <div style="padding-left:14px"><span style="color:#fcd34d">"children"</span>: [ ... ]</div>
+          <div>}</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Core Philosophy -->
+    <section>
+      <h2 style="font-size: 20px;">Key Features</h2>
+      <div class="feature-list">
+        <div class="feature-item">
+          <h3>1. Zero Clutter Layout</h3>
+          <p>Preserves every vertical pixel with clean side-by-side selector and Monaco editor.</p>
+        </div>
+        <div class="feature-item">
+          <h3>2. Direct Root Element Access</h3>
+          <p>Select any of the 60+ DOM specifications to inspect its exact tag, attributes, and child hierarchy instantly.</p>
+        </div>
+        <div class="feature-item">
+          <h3>3. Decoupled Components</h3>
+          <p>Structured with <code>components/left</code>, <code>components/right</code>, and <code>workspace</code> powered by <code>dom-primitive-bindings</code>.</p>
+        </div>
+        <div class="feature-item">
+          <h3>4. Resilient Data Ingestion</h3>
+          <p>Loads directly from <code>declarative-spec</code> distribution module with automatic fallback.</p>
+        </div>
+      </div>
+    </section>
+  </main>
+</body>
+</html>

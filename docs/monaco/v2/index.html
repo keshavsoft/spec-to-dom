@@ -1,0 +1,55 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!-- Ensure directory URLs always have trailing slash so relative paths resolve correctly -->
+  <script>
+    if (!location.pathname.endsWith('/') && !location.pathname.split('/').pop().includes('.')) {
+      location.replace(location.pathname + '/' + location.search + location.hash);
+    }
+  </script>
+  <title>Spec Explorer V5</title>
+  <link rel="stylesheet" href="./workspace/css/workspace.css">
+  <link rel="stylesheet" href="./components/left/css/left.css">
+  <link rel="stylesheet" href="./components/right/css/right.css">
+</head>
+
+<body>
+  <main class="workspace" id="leftWorkspace">
+    <!-- Left Panel: Minimalist Selectors -->
+    <aside class="left-workspace" aria-label="Spec Element Selectors">
+      <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 2px;">
+        <span style="font-size: 11px; font-weight: 700; color: #38bdf8; letter-spacing: 0.5px;">SPEC STUDIO V5</span>
+        <a href="../" style="font-size: 11px; color: #8fa5c4; text-decoration: none;"
+          title="Back to Monaco Versions Hub">← Hub</a>
+      </div>
+
+      <div class="control-group">
+        <label for="rootSelect">Spec Element</label>
+        <select id="rootSelect" aria-label="Spec Element">
+          <option value="">Select Element</option>
+        </select>
+      </div>
+
+      <button id="showAll" class="show-all-btn" type="button">Show all</button>
+    </aside>
+
+    <!-- Right Panel: Clean Monaco Editor -->
+    <section class="right-workspace" aria-label="Monaco Editor">
+      <div class="editor-header">
+        <span id="editorTitle">spec.json</span>
+        <span id="editorPath">Complete library</span>
+      </div>
+      <div id="monacoEditor" class="monaco-editor"></div>
+    </section>
+  </main>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/monaco-editor/0.52.2/min/vs/loader.min.js"></script>
+  <script type="module" src="https://keshavsoft.github.io/declarative-spec/dist/v2/min.js"></script>
+
+  <script type="module" src="./index.js"></script>
+</body>
+
+</html>

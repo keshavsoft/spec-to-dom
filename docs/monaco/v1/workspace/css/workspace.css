@@ -1,0 +1,72 @@
+:root {
+  color-scheme: dark;
+  font-family: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  background: #08111f;
+  color: #e5edf8;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  height: 100vh;
+  overflow: hidden;
+  background: #08111f;
+}
+
+.workspace {
+  display: grid;
+  grid-template-columns: 280px minmax(0, 1fr);
+  height: 100vh;
+  gap: 12px;
+  padding: 12px;
+}
+
+.left-workspace {
+  background: #111e31;
+  border: 1px solid #263750;
+  border-radius: 10px;
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.right-workspace {
+  background: #111e31;
+  border: 1px solid #263750;
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+.editor-header {
+  height: 38px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 16px;
+  background: #0d1726;
+  border-bottom: 1px solid #263750;
+  font-size: 12px;
+  font-family: monospace;
+}
+
+#editorTitle {
+  color: #38bdf8;
+  font-weight: 600;
+}
+
+#editorPath {
+  color: #8fa5c4;
+}
+
+.monaco-editor {
+  flex: 1;
+  width: 100%;
+  height: calc(100% - 38px);
+}

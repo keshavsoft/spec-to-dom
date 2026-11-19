@@ -1,0 +1,54 @@
+.control-group {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.control-group label {
+  font-size: 11px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  color: #8fa5c4;
+}
+
+.control-group select {
+  width: 100%;
+  padding: 8px 10px;
+  border-radius: 6px;
+  background: #0d1726;
+  border: 1px solid #2a3d58;
+  color: #f0f5ff;
+  font-size: 13px;
+  outline: none;
+  cursor: pointer;
+  transition: border-color 0.15s ease;
+}
+
+.control-group select:focus {
+  border-color: #38bdf8;
+}
+
+.control-group select:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
+.show-all-btn {
+  margin-top: auto;
+  padding: 8px 12px;
+  border-radius: 6px;
+  background: #17263c;
+  border: 1px solid #314b6d;
+  color: #9eb1cb;
+  font-size: 12px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+
+.show-all-btn:hover {
+  background: #1d3554;
+  color: #fff;
+  border-color: #38bdf8;
+}
